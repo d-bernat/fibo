@@ -1,0 +1,21 @@
+sudo: required
+services:
+    - docker
+before_install:
+    - docker build -t dbernat/fibotest -f ./client/Dockerfile.dev ./client
+
+script:
+    - docker run -e CI=true dbernat/fibotest npm run test
+
+after_success:
+    - docker build -t dbernat/fibo-client   ./client
+    - docker build -t dbernat/fibo-server   ./server
+    - docker build -t dbernat/fibo-nginx    ./nginx
+    - docker build -t dbernat/fibo-worker   ./worker
+
+    - echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+    - docker push dbernat/fibo-client
+    - docker push dbernat/fibo-server
+    - docker push dbernat/fibo-nginx
+    - docker push dbernat/fibo-worker
+ 
