@@ -5,23 +5,27 @@
             "name": "fibo-client",
             "image": "dbernat/fibo-client",
             "hostname": "client",
-            "essential": false
+            "essential": false,
+            "memory": 128
         },
         {
             "name": "fibo-server",
             "image": "dbernat/fibo-server",
             "hostname": "api",
-            "essential": false
+            "essential": false,
+            "memory": 128
         },
         {
             "name": "fibo-worker",
             "image": "dbernat/fibo-worker",
-            "essential": false
+            "essential": false,
+            "memory": 128
         },
         {
             "name": "fibo-nginx",
             "image": "dbernat/fibo-nginx",
             "essential": true,
+            "memory": 128,
             "portMappings": [
                 {
                     "hostPort": 80,
