@@ -22,7 +22,7 @@ services:
       - PGUSER=postgres
       - PGHOST=postgres
       - PGPORT=5432
-      - PGDATABASE=postgres
+      - PGDATABASE=fibodb
       - PGPASSWORD=postgres_password
   worker:
     depends_on:
